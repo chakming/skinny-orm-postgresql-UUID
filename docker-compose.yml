@@ -1,0 +1,9 @@
+postgres:
+    image: postgres:9.4
+    volumes:
+      - ./initdb:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+    environment:
+      SERVICE_NAME: membership_service
+      POSTGRES_PASSWORD: skinny
