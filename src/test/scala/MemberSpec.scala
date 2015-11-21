@@ -1,10 +1,12 @@
+import java.util.UUID
+
 import Model.Member
 import org.scalatest.{Matchers, fixture}
 import scalikejdbc._
 import scalikejdbc.config.DBs
 import scalikejdbc.scalatest.AutoRollback
 
-class MemberSpec extends fixture.FlatSpec with AutoRollback with Matchers{
+class MemberSpec extends fixture.FlatSpec with AutoRollback with Matchers {
   DBs.setupAll()
 
   override def fixture(implicit session: DBSession) {
@@ -20,6 +22,7 @@ class MemberSpec extends fixture.FlatSpec with AutoRollback with Matchers{
   it should "create a member record" in { implicit session =>
     val column = Member.column
     Member.createWithNamedValues(
+      column.uuid -> UUID.randomUUID().toString,
       column.name -> "Skinny"
     )
 
