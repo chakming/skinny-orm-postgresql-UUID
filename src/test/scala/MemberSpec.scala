@@ -22,7 +22,7 @@ class MemberSpec extends fixture.FlatSpec with AutoRollback with Matchers {
   it should "create a member record" in { implicit session =>
     val column = Member.column
     Member.createWithNamedValues(
-      column.uuid -> UUID.randomUUID().toString,
+      column.uuid -> UUID.randomUUID(),
       column.name -> "Skinny"
     )
 
